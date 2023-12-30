@@ -1,4 +1,3 @@
-import { auth, gP } from '../config/firebase';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { authTrue, authFalse } from '../actions/requestActions';

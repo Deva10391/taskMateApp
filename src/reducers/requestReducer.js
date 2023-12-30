@@ -5,7 +5,7 @@ const initialState = {
     load: true,
 }
 
-export default function (state = initialState, action) {
+const requestReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION:
             return {
@@ -35,3 +35,5 @@ export default function (state = initialState, action) {
             return state;
     }
 }
+
+export default requestReducer;

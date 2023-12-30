@@ -50,12 +50,15 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
     };
 
     useEffect(() => {
-        if (load) {
-            console.log(load);
-            gettingData();
-            loadFalse();
-            console.log(load);
+        const f = () => {
+            if (load) {
+                console.log(load);
+                gettingData();
+                loadFalse();
+                console.log(load);
+            }
         }
+        f();
     }, [load]);
 
     const deleteFromDB = async (del_id) => {
@@ -68,7 +71,7 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
     return (
         val.length > 0 ? <div id='t' style={{ display: 'flex', flexDirection: 'column' }}>
             <div id='def' className='flexRow' style={{ width: '100%', textAlign: 'center' }}>
-                <button className='taskB' style={{ backgroundColor: isClicked ? 'transparent': 'rgba(255, 255, 255, 0.1)', width: '50%', borderRight: '1px solid white', borderRadius: '0px' }} onClick={() => toggleDisplayMode('inProgress')}>In progress</button>
+                <button className='taskB' style={{ backgroundColor: isClicked ? 'transparent' : 'rgba(255, 255, 255, 0.1)', width: '50%', borderRight: '1px solid white', borderRadius: '0px' }} onClick={() => toggleDisplayMode('inProgress')}>In progress</button>
                 <button className='taskB' style={{ backgroundColor: isClicked ? 'rgba(255, 255, 255, 0.1)' : 'transparent', width: '50%', borderRadius: '0px' }} onClick={() => toggleDisplayMode('completed')}>Completed</button>
             </div>
             <div id='l' className='alignMid' style={{ flexDirection: 'column' }}>
