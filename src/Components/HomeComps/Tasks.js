@@ -9,15 +9,13 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
     const [val, setVal] = useState([]);
     const [displayMode, setDisplayMode] = useState('inProgress');
     const [isClicked, setIsClicked] = useState(false);
-
+    const collRef = collection(db, "coll01");
 
     const toggleDisplayMode = (mode) => {
         setIsClicked(!isClicked);
         console.log(isClicked);
         setDisplayMode(mode);
     }
-
-    const collRef = collection(db, "coll01");
 
     const updateDisplayValue = async (doc_id) => {
         let newDisplayMode;
@@ -59,7 +57,7 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
             }
         }
         f();
-    }, [load, loadFalse]);
+    }, [load, loadFalse, collRef]);
 
     const deleteFromDB = async (del_id) => {
         console.log(del_id);
