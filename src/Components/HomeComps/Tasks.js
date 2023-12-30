@@ -59,7 +59,7 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
             }
         }
         f();
-    }, [load]);
+    }, [load, gettingData, loadFalse]);
 
     const deleteFromDB = async (del_id) => {
         console.log(del_id);
