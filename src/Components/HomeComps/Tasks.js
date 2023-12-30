@@ -19,19 +19,6 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
 
     const collRef = collection(db, "coll01");
 
-    const gettingData = async () => {
-        console.log('called');
-        try {
-            const data = await getDocs(collRef);
-            const tempData = data.docs.map(d => d = ({ _id: d.id, ...d.data() }));
-            const filteredData = tempData.filter(d => d.userEmail === auth.currentUser.email);
-            setVal(filteredData);
-        }
-        catch (error) {
-            console.error('Error: ', error.message);
-        }
-    };
-
     const updateDisplayValue = async (doc_id) => {
         let newDisplayMode;
         if (displayMode === 'inProgress') { newDisplayMode = 'completed' }
@@ -50,6 +37,19 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
     };
 
     useEffect(() => {
+        const gettingData = async () => {
+            console.log('called');
+            try {
+                const data = await getDocs(collRef);
+                const tempData = data.docs.map(d => d = ({ _id: d.id, ...d.data() }));
+                const filteredData = tempData.filter(d => d.userEmail === auth.currentUser.email);
+                setVal(filteredData);
+            }
+            catch (error) {
+                console.error('Error: ', error.message);
+            }
+        };
+
         const f = () => {
             if (load) {
                 console.log(load);
@@ -59,7 +59,7 @@ const TaskValues = ({ load, loadFalse, loadTrue }) => {
             }
         }
         f();
-    }, [load, gettingData, loadFalse]);
+    }, [load, loadFalse]);
 
     const deleteFromDB = async (del_id) => {
         console.log(del_id);
